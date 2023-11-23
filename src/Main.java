@@ -1,17 +1,26 @@
+
 import java.time.LocalDate;
+import java.util.Arrays;
+
+import static java.lang.Math.round;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
+
     public static void main(String[] args) {
         printLeapYear(2009);
         detectedVersionApp(1, 2014);
         printDaysToDelivery(102);
+        //
+        int[] array = {3, 2, 1, 6, 5};
+        reverseArray(array);
+        checkDouble("abcdefghijjkk");
+
+        int[] array1 = generateRandomArray(30, 100_000, 200_000);
+        averageWestInMonth(array1);
     }
 
-    public static  void printAppVersionMessage(int year, int os){
-
-    }
     public static void printLeapYear(int year){
         boolean isLeapYear =
                 (year >= 1584) &&
@@ -58,5 +67,63 @@ public class Main {
         } else {
             System.out.println("Доставки нет");
         }
+
+
+    }
+
+    // hard task
+    //task 4
+    public static void reverseArray(int[] array){
+        for (int i = 0; i < array.length / 2; i++) {
+            final int left = array[i];
+            final int right = array[array.length - 1 - i];
+            array[i] = right;
+            array[array.length - 1 - i] = left;
+        }
+        System.out.println(Arrays.toString(array));
+    }
+    
+    //task 5 
+    public static void checkDouble(String a){
+        for (int i = 0; i < a.length() - 1; i++) {
+            if (a.charAt(i) == a.charAt(i+1)){
+                System.out.printf("У строки есть дубль. Задублированное значение: %s\n", a.charAt(i));
+                return;
+            }
+        }
+    }
+
+    // task 6
+    public static int[] generateRandomArray(int sizeOfArray, int minValue, int maxValue){
+        //initial array with size
+        int[] array = new int[sizeOfArray];
+
+        for (int i = 0; i < array.length; i++) {
+            // assignment random value from min to max
+            array[i] = maxValue - (int) (Math.random() * minValue);
+        }
+
+        return array;
+    }
+    public static int getSumOfArray(int[] array){
+        int sum = 0;
+        for (int i = 0; i < array.length; i++) {
+            sum += array[i];
+        }
+        return sum;
+    }
+
+    public static double getAndPrintAverage(double num1, int num2){
+        double num = Math.floor((num1/num2) * 100) / 100;
+        System.out.println(num);
+        return num;
+    }
+
+    public static double averageWestInMonth(int[] array){
+
+        double totalWest = getSumOfArray(array);
+        double averageWest = getAndPrintAverage(totalWest, array.length);
+
+        return averageWest;
     }
 }
