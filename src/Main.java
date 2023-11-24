@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
         printLeapYear(2009);
-        detectedVersionApp(1, 2014);
+        detectedVersionApp(1, 2023);
         printDaysToDelivery(102);
         //
         int[] array = {3, 2, 1, 6, 5};
@@ -33,14 +33,14 @@ public class Main {
         } else System.out.println(year + " год не является високосным");
     }
 
-    public static void detectedVersionApp(int clientOS, int deviceYear, int... date){
+    public static void detectedVersionApp(int clientOS, int deviceYear){
         final int iOS = 0;
         final int Android = 1;
 
-        //default parametr currentDate if not provided
-        int currentDate = date.length > 0 ? date[0] : LocalDate.now().getYear();
+        //default parametr
+        final int currentDate = LocalDate.now().getYear();
 
-        boolean needLightVersion = deviceYear < 2015;
+        boolean needLightVersion = deviceYear < currentDate;
 
         if (clientOS == iOS && !needLightVersion) {
             System.out.println("Установите версию приложения для iOS по ссылке");
